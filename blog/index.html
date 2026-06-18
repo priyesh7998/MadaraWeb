@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MadaraWeb Blog</title>
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111827;
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+      --accent: #3b82f6;
+      --accent2: #8b5cf6;
+      --border: rgba(255, 255, 255, 0.008);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, sans-serif;
+      background: linear-gradient(180deg, #020617, #0f172a);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    .blog-section {
+      padding: 90px 0;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 15px;
+    }
+
+    .section-sub {
+      color: var(--text-dim);
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 50px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .blog-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all .45s ease;
+      backdrop-filter: blur(12px);
+      height: 450px;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(59, 130, 246, .18);
+      border-color: rgba(59, 130, 246, .4);
+    }
+
+    .blog-image {
+      height: 220px;
+      transition: all .45s ease;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .blog-card:hover .blog-image {
+      height: 120px;
+      /* लगभग 45% shrink */
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.08);
+    }
+
+    .blog-content {
+      padding: 0.6rem 0.6rem 0 0.6rem;
+      height: calc(100% - 220px);
+      transition: all .45s ease;
+    }
+
+    .blog-card:hover .blog-content {
+      height: calc(100% - 120px);
+    }
+
+    .blog-content h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .blog-content p {
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: all .4s ease;
+    }
+
+    .blog-card:hover .blog-content p {
+      -webkit-line-clamp: 6;
+    }
+
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      transition: all .35s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 0 35px rgba(59, 130, 246, .25);
+    }
+
+    .blog-card:hover .read-btn {
+      padding: 16px 30px;
+      font-size: 1rem;
+      box-shadow: 0 0 25px rgba(139, 92, 246, .5);
+    }
+
+    @media (max-width:768px) {
+      .blog-section {
+        padding: 70px 0;
+      }
+
+      .blog-image {
+        height: 190px;
+      }
+    }
+
+    /* Search Bar Style */
+
+    .search-box{
+    margin: 30px 0 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box input{
+    width: min(600px, 90%);
+    padding: 16px 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(59,130,246,.35);
+    background: rgba(17,24,39,.9);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all .3s ease;
+}
+
+.search-box input:focus{
+    box-shadow: 0 0 20px rgba(59,130,246,.25);
+    border-color: #3b82f6;
+}
+
+  </style>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+      <nav id="navbar">
+      <div class="container nav-inner">
+        <!-- Logo -->
+        <a href="/" class="nav-logo">Madara<span>Web</span></a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links">
+          <li><a href="/" target="_blank">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/">Report</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/contact" target="_blank">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <!-- Theme toggle -->
+          <button id="theme-toggle" aria-label="Toggle theme">
+            <svg id="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <circle cx="12" cy="12" r="4" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+              <line x1="2" y1="12" x2="6" y2="12" />
+              <line x1="18" y1="12" x2="22" y2="12" />
+              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
+            </svg>
+            <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- CTA button -->
+          <a href="/contact" class="btn btn-primary nav-cta">Get Started →</a>
+
+          <!-- Hamburger (mobile) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile drawer -->
+      <div class="mobile-nav" id="mobile-nav">
+        <a href="/" class="mobile-link">Home</a>
+        <a href="/services" class="mobile-link" target="_blank">Services</a>
+        <a href="/blog" class="mobile-link">Report</a>
+        <a href="/portfolio" class="mobile-link" target="_blank">Portfolio</a>
+        <a href="/contact" class="mobile-link">Contact</a>
+        <a href="/contact" class="btn btn-primary" style="margin-top:8px;justify-content:center;" target="_blank">Get Started →</a>
+      </div>
+    </nav>
+
+
+  <section class="blog-section">
+    <div class="container">
+      <div class="section-label">MadaraWeb Blog</div>
+      <h1 class="section-title">Insights on Web & AI Automation</h1>
+      <p class="section-sub">
+        Explore expert articles on website development, AI automation, chatbots,
+        business growth, and modern technology.
+      </p>
+      <div class="search-box">
+        <input type="text" id="blog-search" placeholder="Search blogs..." />
+      </div>
+      <div class="blog-grid" id="blog-grid"></div>
+    </div>
+  </section>
+
+  <script src="/blog/script.js"></script>
+  <script src="../script.js"></script>
+</body>
+
+</html>
